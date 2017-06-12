@@ -1,4 +1,6 @@
-var favShows = ["The Office", "Parks and Recreation", "30 Rock", "It's Always Sunny in Philadelphia", "Archer", "Seinfeld", "South Park"];
+$(document).ready(function() {
+
+var reactions = ["high five", "eye roll", "sad", "no", "happy", "LOL", "wink", "thumbs up", "yes", "suprised", "angry", "proud"];
 
 
 
@@ -7,32 +9,36 @@ function makeButtons() {
 
   	$("#buttons-holder").empty();
 
-    for (i = 0; i < favShows.length; i++) {
-		var showButton = $("<button>");
+    for (i = 0; i < reactions.length; i++) {
+		var reactButton = $("<button>");
 
-		showButton.addClass("show");
+		reactButton.addClass("show");
 
-		showButton.attr("data-name", favShows[i]);
+		reactButton.attr("data-name", reactions[i]);
 
-		showButton.text(favShows[i]);
+		reactButton.text(reactions[i]);
 
-		$("#buttons-holder").append(showButton);
+		$("#buttons-holder").append(reactButton);
 	}
 }
 
 $("#addGif").on("click", function(event){
 	event.preventDefault();
 
-	var newShow = $("#userInput").val().trim();
+	var newReaction = $("#userInput").val().trim();
 
-	favShows.push(newShow);
+	reactions.push(newReaction);
 
 	makeButtons();
 });
 
-function getShowInfo() {
-	var show = $(this).attr("data-name");
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q="+show+"&api_key=dc6zaTOxFJmzC&limit=10";
+function getGifInfo() {
+	$("#gif-holder").empty();
+
+
+
+	var reaction = $(this).attr("data-name");
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q="+reaction+"&api_key=dc6zaTOxFJmzC&limit=10";
 		console.log(queryURL);
 	$.ajax({
 		url: queryURL,
@@ -42,13 +48,27 @@ function getShowInfo() {
 		for(i=0;i<response.data.length;i++) {
 			$("#gif-holder").prepend("<p>Rating: "+response.data[i].rating+"</p>");
 
-			$("#gif-holder").prepend("<img src="+response.data[i].images.downsized.url+">");
+			$("#gif-holder").prepend("<img class='gif' data-state='still' data-still="+response.data[i].images.original_still.url+" data-animate="+response.data[i].images.original.url+" src="+response.data[i].images.original_still.url+">");
 		}
 	})
 }
 
-$(document).on("click", ".show", getShowInfo);
+$("body").on("click", ".gif", function() {
+
+	var state = $(this).attr("data-state");
+
+	if (state === "still") {
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	} else {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state", "still");
+	}
+});
+
+
+$(document).on("click", ".show", getGifInfo);
 
 makeButtons();
 
-
+})

@@ -4,12 +4,26 @@
 	<meta charset="utf-8">
 	<title>GifTastic</title>
 
-	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-
-	 <script type="text/javascript" src="assets/javascript/app.js"></script>
+	
 </head>
 <body>
  <div class="container-fluid">
+
+	<h1 id="header">Reaction GIF Generator!</h1>
+ 	<div id="buttons-holder"></div>
+ 	<form id="newGif">
+ 	  <label for="userInput">Add a new reaction!</label>
+ 	  <input type="text"  id="userInput"><br>
+
+ 	  <input id="addGif" type="submit" value="Add a new Gif">
+ 	</form>
+
+	<div id="gif-holder"></div>
+
+
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+	 <script type="text/javascript" src="assets/javascript/app.js"></script>
  </div>
 </body>
 </html>
