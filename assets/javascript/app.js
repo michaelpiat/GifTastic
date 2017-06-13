@@ -12,7 +12,7 @@ function makeButtons() {
     for (i = 0; i < reactions.length; i++) {
 		var reactButton = $("<button>");
 
-		reactButton.addClass("show");
+		reactButton.addClass("reactGif");
 
 		reactButton.attr("data-name", reactions[i]);
 
@@ -48,7 +48,7 @@ function getGifInfo() {
 		for(i=0;i<response.data.length;i++) {
 			$("#gif-holder").prepend("<p>Rating: "+response.data[i].rating+"</p>");
 
-			$("#gif-holder").prepend("<img class='gif' data-state='still' data-still="+response.data[i].images.original_still.url+" data-animate="+response.data[i].images.original.url+" src="+response.data[i].images.original_still.url+">");
+			$("#gif-holder").prepend("<img class='gif' data-state='still' data-still="+response.data[i].images.downsized_still.url+" data-animate="+response.data[i].images.downsized.url+" src="+response.data[i].images.downsized_still.url+">");
 		}
 	})
 }
@@ -67,7 +67,7 @@ $("body").on("click", ".gif", function() {
 });
 
 
-$(document).on("click", ".show", getGifInfo);
+$(document).on("click", ".reactGif", getGifInfo);
 
 makeButtons();
 

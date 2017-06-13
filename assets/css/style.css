@@ -1,0 +1,28 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Archivo Black', sans-serif;
+}
+
+button {
+	color: white;
+	background-color: mediumslateblue;
+	border-radius: 12px;
+}
+
+input {
+	color: white;
+	background-color: mediumslateblue;
+	border-radius: 12px;
+}
+
+#userInput {
+	background-color: white;
+}
+
+
+
+.reactGif {
+	display: inline !important;
+}
+
