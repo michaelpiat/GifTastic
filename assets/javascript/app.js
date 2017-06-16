@@ -43,7 +43,7 @@ function getGifInfo() {
 	//setting the var reaction to the data-name in the button that was pressed 
 	var reaction = $(this).attr("data-name");
 	//setting the var queryURL to the api URL + the data-name reaction from the button that was and with a limit of 10 results
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+reaction+"&api_key=dc6zaTOxFJmzC&limit=10";
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q="+reaction+"&api_key=dc6zaTOxFJmzC&limit=10";
 	//ajax call		
 	$.ajax({
 		//our URL with the selected buttons' reaction.
